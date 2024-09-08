@@ -1,66 +1,55 @@
-import { AtpAgent } from '@atproto/api';
+document.getElementById('submitButton').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const subdomain = document.getElementById('subdomain').value;
+  const result = document.getElementById('result');
+  const atprotoConfig = document.getElementById('atprotoConfig');
 
-document.getElementById('mysub').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const subdomain = document.getElementById('subdomain').value;
-    const result = document.getElementById('result');
-    const atprotoConfig = document.getElementById('atprotoConfig');
+  async function createSession() {
+      const agent = new AtpAgent({ service: 'https://bsky.social' });
+      await agent.login({ identifier: 'urbannaticos.com', password: 'pypq-cman-ctem-7dao' });
+      console.log('Sessão criada com sucesso!');
+      console.log('Access Token:', agent.session.accessJwt);
+      console.log('Refresh Token:', agent.session.refreshJwt);
 
-    // Função para criar a sessão
-    async function createSession() {
-        const agent = new AtpAgent({ service: 'https://bsky.social' });
-        await agent.login({ identifier: 'urbannaticos.com', password: 'pypq-cman-ctem-7dao' });
-        console.log('Sessão criada com sucesso!');
-        console.log('Access Token:', agent.session.accessJwt);
-        console.log('Refresh Token:', agent.session.refreshJwt);
+      const subdomainResponse = await generateSubdomain(agent, subdomain);
+      const fullUrl = `https://${subdomain}.urbannaticos.com`;
 
-        // Adicione a lógica para gerar o subdomínio aqui
-        const subdomainResponse = await generateSubdomain(agent, subdomain);
-        console.log('Subdomínio gerado:', subdomainResponse);
+      const config = `
+      {
+      "subdomain": "${subdomain}",
+      "domain": "urbannaticos.com",
+      "atproto": {
+        "endpoint": "https://${subdomain}.urbannaticos.com",
+        "key": "YOUR_API_KEY_HERE"
+      }
+      }`;
 
-        // Atualiza a interface com o subdomínio gerado
-        result.then(function (data) {
-            document.getElementById("message").innerHTML =
-              "<div class='notification is-link is-light'>" +
-              "<div class='icon-text'>" +
-              "<span class='icon has-text-info'><i class='fas fa-info-circle'></i></span>" +
-              "<span>Seu link é: " +
-              "<strong><a href='" +
-              data.fullUrl +
-              "' target='_blank' class='is-white'>" +
-              data.fullUrl +
-              "</a></strong>. " +
-              "</span>" +
-              "</div>" +
-              "</div>";
-          });
-          document.getElementById("linkinput").value = "";
+      document.getElementById("message").innerHTML =
+        "<div class='notification is-link is-light'>" +
+        "<div class='icon-text'>" +
+        "<span class='icon has-text-info'><i class='fas fa-info-circle'></i></span>" +
+        "<span>Seu link é: " +
+        "<strong><a href='" +
+        fullUrl +
+        "' target='_blank' class='is-white'>" +
+        fullUrl +
+        "</a></strong>.<p>" + config + "</p>" +
+        "</span>" +
+        "</div>" +
+        "</div>";
 
-        // Exemplo de configuração do AT Protocol
-        const config = `
-{
-  "subdomain": "${subdomain}",
-  "domain": "urbannaticos.com",
-  "atproto": {
-    "endpoint": "https://${subdomain}.urbannaticos.com",
-    "key": "YOUR_API_KEY_HERE"
+
+      atprotoConfig.textContent = config;
+
+      setTimeout(() => {
+          window.location.href = fullUrl;
+      }, 5000);
   }
-}`;
-        atprotoConfig.textContent = config;
 
-        // Redireciona o navegador para o novo subdomínio após 5 segundos
-        setTimeout(() => {
-            window.location.href = fullUrl;
-        }, 5000);
-    }
+  async function generateSubdomain(agent, subdomain) {
+      const response = await agent.createSubdomain({ name: subdomain });
+      return response.data.subdomain;
+  }
 
-    // Função para gerar o subdomínio
-    async function generateSubdomain(agent, subdomain) {
-        // Exemplo de lógica para gerar um subdomínio
-        const response = await agent.createSubdomain({ name: subdomain });
-        return response.data.subdomain;
-    }
-
-    // Chama a função createSession
-    createSession();
+  createSession();
 });

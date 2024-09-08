@@ -1,66 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Subdomínio Bluesky</title>
+</head>
+<body>
+    <h1>Gerador de Subdomínio Bluesky</h1>
+    <form id="subdomainForm">
+        <label for="subdomain">Escolha seu subdomínio:</label>
+        <input type="text" id="subdomain" name="subdomain" required>
+        <button type="submit">Gerar</button>
+    </form>
+    <p id="result"></p>
+    <pre id="atprotoConfig"></pre>
 
-<nav class="navbar is-dark is-fixed-top" id="top">
-    <div class="navbar-brand"><a class="navbar-item is-logo" href="home#short">GeRAí!</a>
-      <div class="navbar-item"><span>seu link urbannatico</span></div>
-      <div class="navbar-burger" data-target="navbarExampleTransparentExample"><span></span><span></span><span></span></div>
-    </div>
-    <div class="navbar-menu" id="navbarExampleTransparentExample">
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="field is-grouped"><a class="navbar-item is-active" href="home#short">Encurtar</a><a class="navbar-item" href="home#about">Sobre</a><a class="navbar-item" href="terms">Termos</a></div>
-        </div>
-      </div>
-    </div>
-  </nav>
-  <section class="hero is-gradient-background is-fullheight" id="short">
-    <div class="hero-body">
-      <div class="container">
-        <div class="content has-text-centered">
-          <p class="title is-white">Gere links para seus amigos</p>
-          <p class="subtitle is-white strong is-logo is-white">
-            e brinque no bluesky!</p>
-        </div>
-        <div class="field mb-6 has-addons">
-          <div class="control">
-            <input class="input is-rounded" id="mysub" name="text" type="text" value="" placeholder="Informe seu nome e sobrenome ou apelido"/>
-          </div>
-          <div class="control">
-            <button class="button is-white is-rounded" id="mysub" type="submit">Gerar</button>
-          </div>
-        </div>
-        <div class="mb-4" id="message"></div>
-      </div>
-    </div>
-    <div class="hero-footer">
-      <div class="inner-header flex glass">
-        <div></div>
-      </div>
-    </div>
-    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 24 150 28" preserveaspectratio="none" shape-rendering="auto">
-      <defs>
-        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
-      </defs>
-      <g class="parallax">
-        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7"></use>
-        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)"></use>
-        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)"></use>
-        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff"></use>
-      </g>
-    </svg>
-  </section>
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p>Copyright ©
-        <script>document.write(new Date().getFullYear());</script>
-        dos mesmos criadores do
-        <strong class="is-logo">EncurTaí!</strong>
-        por
-        <a class="is-urb" href="https://studiourbanna.github.io">stdurb</a>. Todos os direitos reservados.
-      </p>
-    </div>
-  </footer>
-  <!-- All this area goes before </body> closing tag-->
-  <script src="assets/js/script.js"></script>
-  <script src="https://kit.fontawesome.com/935120b1bc.js" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.3.0/fuse.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

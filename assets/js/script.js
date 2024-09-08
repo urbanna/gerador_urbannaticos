@@ -1,3 +1,5 @@
+import { AtpAgent } from '@atproto/api';
+
 document.getElementById('submitButton').addEventListener('submit', function(event) {
   event.preventDefault();
   const subdomain = document.getElementById('subdomain').value;

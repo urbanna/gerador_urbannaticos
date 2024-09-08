@@ -1,0 +1,178 @@
+.navbar-item a {
+    color: white;
+  }
+  
+  .navbar-item a:hover {
+    color: #873ab7;
+  }
+  
+  .is-gradient-background {
+    background: linear-gradient(60deg, #873ab7 50%, #e13cff 100%);
+  }
+  
+  .hero-body {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  
+  .inner-header {
+    height: 65vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .flex {
+    /*Flexbox for containers*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .waves {
+    position: relative;
+    width: 100%;
+    height: 15vh;
+    margin-bottom: -7px;
+    /*Fix for safari gap*/
+    min-height: 100px;
+    max-height: 150px;
+  }
+  
+  /* Animation */
+  .parallax > use {
+    -webkit-animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5)
+      infinite;
+    animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  }
+  
+  .parallax > use:nth-child(1) {
+    -webkit-animation-delay: -2s;
+    animation-delay: -2s;
+    -webkit-animation-duration: 7s;
+    animation-duration: 7s;
+  }
+  
+  .parallax > use:nth-child(2) {
+    -webkit-animation-delay: -3s;
+    animation-delay: -3s;
+    -webkit-animation-duration: 10s;
+    animation-duration: 10s;
+  }
+  
+  .parallax > use:nth-child(3) {
+    -webkit-animation-delay: -4s;
+    animation-delay: -4s;
+    -webkit-animation-duration: 13s;
+    animation-duration: 13s;
+  }
+  
+  .parallax > use:nth-child(4) {
+    -webkit-animation-delay: -5s;
+    animation-delay: -5s;
+    -webkit-animation-duration: 20s;
+    animation-duration: 20s;
+  }
+  
+  @-webkit-keyframes move-forever {
+    0% {
+      transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+      transform: translate3d(85px, 0, 0);
+    }
+  }
+  
+  @keyframes move-forever {
+    0% {
+      transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+      transform: translate3d(85px, 0, 0);
+    }
+  }
+  /*Shrinking for mobile*/
+  @media (max-width: 768px) {
+    .waves {
+      height: 40px;
+      min-height: 40px;
+    }
+  
+    .content {
+      height: 30vh;
+    }
+  
+    h1 {
+      font-size: 24px;
+    }
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+  
+  .glass {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    -webkit-clip-path: inset(10em);
+    clip-path: inset(10em);
+    filter: blur(20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .drop-shadow {
+    height: 100%;
+    width: 100%;
+    filter: drop-shadow(0px 20px 10px rgba(0, 0, 0, 0.3));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .drop-shadow:before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 10em;
+    height: calc(100% - 20em);
+    width: calc(100% - 20em);
+    border-top: 2px solid rgba(225, 225, 225, 0.2);
+    border-left: 1px solid rgba(225, 225, 225, 0.1);
+    border-right: 1px solid rgba(225, 225, 225, 0.3);
+    z-index: 2;
+  }
+  .drop-shadow > span {
+    position: absolute;
+    z-index: 5;
+    color: white;
+    font-size: 4em;
+    letter-spacing: 0.35em;
+    padding-left: 0.375em;
+  }
+  
+  @media (max-width: 980px) {
+    .glass {
+      -webkit-clip-path: inset(5em);
+      clip-path: inset(5em);
+    }
+  
+    .drop-shadow:before {
+      top: 5em;
+      width: calc(100% - 10em);
+    }
+    .drop-shadow > span {
+      font-size: 4em;
+    }
+  }
+  @media (max-width: 640px) {
+    .drop-shadow > span {
+      font-size: 2em;
+    }
+  }
+  

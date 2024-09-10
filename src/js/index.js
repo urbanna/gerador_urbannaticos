@@ -1,5 +1,51 @@
 import { AtpAgent } from '@atproto/api';
 
+//MENU
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Get all "navbar-burger" elements
+  const $navbarBurgers = Array.prototype.slice.call(
+    document.querySelectorAll(".navbar-burger"),
+    0
+  );
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+    // Add a click event on each of them
+    $navbarBurgers.forEach((el) => {
+      el.addEventListener("click", () => {
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle("is-active");
+        $target.classList.toggle("is-active");
+      });
+    });
+  }
+});
+
+$(document).ready(function () {
+  // Check for click events on the navbar burger icon
+  $(".navbar-burger").click(function () {
+    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
+  });
+});
+
+$(document).ready(function () {
+  // Check for click events on the navbar burger icon
+  $(".navbar-burger").click(function () {
+    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
+  });
+});
+
+
+
 document.getElementById('myForm').addEventListener('submit', async function(event) {
   event.preventDefault();
   const subdomain = document.getElementById('subdomain').value;
@@ -7,53 +53,40 @@ document.getElementById('myForm').addEventListener('submit', async function(even
   const atprotoConfig = document.getElementById('atprotoConfig');
 
   try {
-    const agent = new AtpAgent({ service: 'https://bsky.social' });
-    await agent.login({ identifier: 'urbannaticos.com', password: 'pypq-cman-ctem-7dao' });
-    console.log('Sessão criada com sucesso!');
-    console.log('Access Token:', agent.session.accessJwt);
-    console.log('Refresh Token:', agent.session.refreshJwt);
+      const agent = new AtpAgent({ service: 'https://bsky.social' });
+      await agent.login({ identifier: 'urbannaticos.com', password: 'pypq-cman-ctem-7dao' });
 
-    // Certifique-se de que o método 'generateSubdomain' é válido
-    const subdomainResponse = await generateSubdomain(agent, subdomain);
-    const fullUrl = `https://${subdomain}.urbannaticos.com`;
+      // Gera o subdomínio
+      const subdomainResponse = await generateSubdomain(agent, subdomain);
 
-    const config = `
-    {
-    "subdomain": "${subdomain}",
-    "domain": "urbannaticos.com",
-    "atproto": {
-      "endpoint": "https://${subdomain}.urbannaticos.com",
-      "key": "YOUR_API_KEY_HERE"
-    }
-    }`;
+      // Constrói a URL completa e a configuração do Atproto
+      const fullUrl = `https://${subdomain}.urbannaticos.com`;
+      const config = `
+      {
+        "subdomain": "${subdomain}",
+        "domain": "urbannaticos.com",
+        "atproto": {
+          "endpoint": "https://${subdomain}.urbannaticos.com",
+          "key": "YOUR_ACTUAL_API_KEY" // Substitua pela sua chave API
+        }
+      }`;
 
-    document.getElementById("message").innerHTML =
-      "<div class='notification is-link is-light'>" +
-      "<div class='icon-text'>" +
-      "<span class='icon has-text-info'><i class='fas fa-info-circle'></i></span>" +
-      "<span>Seu link é: " +
-      "<strong><a href='" +
-      fullUrl +
-      "' target='_blank' class='is-white'>" +
-      fullUrl +
-      "</a></strong>.<p>" + config + "</p>" +
-      "</span>" +
-      "</div>" +
-      "</div>";
-
-    atprotoConfig.textContent = config;
-
-    console.log("Sessão criada com sucesso!");
-    console.log('Subdomínio gerado:', subdomainResponse);
+      // Exibe o resultado e a configuração
+      result.textContent = `Subdomínio gerado com sucesso!`;
+      atprotoConfig.textContent = config;
 
   } catch (error) {
-    console.error('Erro ao criar a sessão ou gerar subdomínio:', error);
-    result.textContent = 'Erro ao criar a sessão ou gerar subdomínio. Verifique o console para mais detalhes.';
+      console.error('Erro ao criar a sessão ou gerar subdomínio:', error);
+      result.textContent = 'Erro ao criar a sessão ou gerar subdomínio. Verifique o console para mais detalhes.';
   }
 });
 
 async function generateSubdomain(agent, subdomain) {
-    // Verifique a documentação para o método correto
+  try {
     const response = await agent.createSubdomain({ name: subdomain });
     return response.data.subdomain;
+  } catch (error) {
+    console.error('Erro ao gerar subdomínio:', error);
+    throw error; // Reencaminha o erro para ser capturado no bloco catch principal
+  }
 }

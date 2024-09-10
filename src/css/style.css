@@ -176,3 +176,19 @@
     }
   }
   
+  .control {
+    width: auto;
+  }
+
+  .input {
+    width: 500px;
+  }
+
+  .button .is-static {
+    width: 150px;
+  }
+
+  .mb-4 {
+    padding-top: 1em;
+    
+  }

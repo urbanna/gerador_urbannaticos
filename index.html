@@ -4,12 +4,13 @@
 <title>Urbannatique - URLs generator with JS and Bulma</title>
 <link rel="canonical" href="https://codepen.io/clcmo/pen/mdZvEKQ">
 <link rel="stylesheet" href="https://encurtai.studiourbanna.com.br/assets/css/main.css">
+<link rel="stylesheet" href="./src/css/style.css">
 <link rel="icon" href="/src/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <nav class="navbar is-dark is-fixed-top" id="top">
         <div class="navbar-brand">
-          <a class="navbar-item is-logo" href="home#short">GeRAí!</a>
+          <a class="navbar-item is-logo" href="home">GeRAí!</a>
           <div class="navbar-item"><span>seu link urbannatico</span></div>
           <div class="navbar-burger" data-target="navbarExampleTransparentExample">
             <span></span><span></span><span></span>
@@ -36,18 +37,45 @@
               <p class="subtitle is-white strong is-logo is-white">e brinque no bluesky!</p>
             </div>
             <form id="myForm" method="GET">
-              <div class="field mb-6 has-addons">
-                <div class="control">
-                  <input class="input is-rounded" id="subdomain" name="text" type="text" placeholder="Informe seu nome e sobrenome ou apelido"/>
-                </div>
-                <div class="control">
-                  <button class="button is-white is-rounded" id="submitButton" type="submit">Gerar</button>
-                </div>
+              <div class="field has-addons">
+                  <p class="control">
+                    <input class="input" type="text" placeholder="Seu link" id="subdomain">
+                  </p>
+                  <p class="control">
+                    <a class="button is-static">
+                      .urbannaticos.com
+                    </a>
+                  </p>
+              </div>
+              <div class="field has-addons">
+                  <p class="control">
+                    <a class="button is-static">
+                      Código _atproto:
+                    </a>
+                  </p>
+                  <div class="control">
+                    <input class="input" type="text" placeholder="é um código que começa com 'did=did:plc:'. Encontre-o em Configurações > Alterar Usuário > Eu tenho meu próprio domínio" id="atproto">
+                  </div>
+              </div>
+              <div class="field">
+                <label class="checkbox">
+                  <input type="checkbox" id="acept"/>
+                  Aceito os <a href="#">termos e condições</a> de uso.
+                </label>
+              </div>
+              <div class="field is-grouped">
+                  <div class="control">
+                    <button class="button is-link" type="submit" id="submitButton">Gerar</button>
+                  </div>
+                  <div class="control">
+                    <button class="button is-link is-light" type="reset" id="clearButton">Cancelar</button>
+                  </div>
               </div>
             </form>
-    
-            <div class="mb-4" id="result"></div>
-            <pre class="mb-4" id="atprotoConfig"></pre>
+            <div class="mb-4">
+              <p id="result"></p>
+              <pre id="atprotoConfig"></pre>
+            </div>
           </div>
         </div>
     
